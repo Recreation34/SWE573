@@ -12,7 +12,7 @@ public class PriceUtils {
     public static String getPricesFromExchange() {
         int now = (int) (System.currentTimeMillis() / 1000);
         if (now - lastUpdate > 10) {
-            result = UnirestUtils.getResult(EXCHANGE_URL);
+            result = RequestUtils.getResult(EXCHANGE_URL);
             lastUpdate = now;
             System.out.println("prices updated!");
         }
