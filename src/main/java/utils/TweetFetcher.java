@@ -9,10 +9,19 @@ import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TweetFetcher {
 
-    public void startGettingTweets() {
+    private static AtomicBoolean isFetcherStarted = new AtomicBoolean(false);
+
+    public static void start() {
+        if (!isFetcherStarted.get()) {
+            startGettingTweets();
+        }
+    }
+
+    private static void startGettingTweets() {
 
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
